@@ -87,11 +87,6 @@ def head(title, desc, canonical, og_image="images/dr-andrews.webp", extra=""):
 def hero(page, crumb, eyebrow, h1_html, sub, image, image_alt,
          primary=("contact.html", "Request an Appointment"),
          secondary=None):
-    # Frame ratio follows the photograph so nothing is cropped.
-    if "dr-andrews" in image:
-        frame, iw, ih = "portrait", 1122, 1402
-    else:
-        frame, iw, ih = "tall", 941, 1672
     """The Oasis .osw window in its compact interior-page form."""
     sec = ""
     if secondary:
@@ -127,17 +122,9 @@ def hero(page, crumb, eyebrow, h1_html, sub, image, image_alt,
     <a href="index.html">Home</a> <span>/</span> {crumb}
   </nav>
 
-  <div class="osw-stage">
-    <div class="osw-scene">
-      <div class="osw-product-aura" aria-hidden="true"></div>
-      <div class="osw-product {frame}">
-        <img src="{image}" width="{iw}" height="{ih}" fetchpriority="high" alt="{image_alt}" />
-      </div>
-    </div>
-  </div>
 
   <div class="osw-title">
-    <span class="eyebrow" style="display:block; font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--c-coral-deep); font-weight:700; margin-bottom:0.9rem;">{eyebrow}</span>
+    <span class="eyebrow" style="display:block; font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--c-coral-text); font-weight:700; margin-bottom:0.9rem;">{eyebrow}</span>
     <h1>{h1_html}</h1>
     <p class="sub">{sub}</p>
     <div class="btn-row" style="margin-top:1.4rem;">
@@ -305,6 +292,7 @@ def write(name, html):
 
 def page_services():
     p = "services.html"
+    icons = [SVG['tooth'], SVG['heart'], SVG['check'], SVG['user'], SVG['doc'], SVG['share']]
     services = [
         ("general", "General Dental Care", "treatment-room.jpg",
          "A dental treatment room prepared for a routine examination",
@@ -339,13 +327,13 @@ def page_services():
     ]
 
     cards = []
-    for sid, title, img, alt, lede, points in services:
+    for (sid, title, img, alt, lede, points), icon in zip(services, icons):
         pts = "".join(f"<li>{x}</li>" for x in points)
         link = "consulting.html" if sid == "consulting" else "contact.html"
         label = "Enquire" if sid == "consulting" else "Request Consultation"
         cards.append(f"""
         <article class="service-tile reveal" id="{sid}">
-          <div class="service-tile-media"><img src="images/{img}" width="1122" height="1402" loading="lazy" decoding="async" alt="{alt}" /></div>
+          <div class="service-tile-icon" aria-hidden="true">{icon}</div>
           <div class="service-tile-body">
             <h3>{title} <span class="verify">Confirm scope</span></h3>
             <p>{lede}</p>
@@ -415,14 +403,14 @@ def page_tmj():
     <div class="container">
       <div class="media-split">
         <div class="media-split-text reveal">
-          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-deep); font-weight:700; margin-bottom:.9rem;">Why this page exists</span>
+          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-text); font-weight:700; margin-bottom:.9rem;">Why this page exists</span>
           <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem); margin-bottom:1rem;">Jaw discomfort deserves its own conversation.</h2>
           <p>Jaw pain is easy to live around. People adjust how they chew, avoid certain foods, and assume it is simply how things are now.</p>
           <p>It is worth describing properly to someone who will listen. Understanding where discomfort is coming from is the part that tends to get skipped, and it is the part this practice gives time to.</p>
           <p>Public patient feedback about Dr. Andrews mentions his attention to TMJ-related care specifically, which is why it has a page of its own here rather than a line in a list.</p>
         </div>
         <figure class="media-split-figure reveal">
-          <img src="images/tmj-exam.webp" width="1122" height="1402" loading="lazy" decoding="async" alt="A clinician gently examining a patient's jaw during an assessment" />
+          <img src="images/consult-hero.webp" width="941" height="1672" loading="lazy" decoding="async" alt="A dentist in conversation with a seated patient before an examination" />
         </figure>
       </div>
     </div>
@@ -450,16 +438,16 @@ def page_tmj():
         <h2>A conversation before anything else.</h2>
       </div>
       <div class="steps-grid">
-        <article class="step-card reveal">
-          <div class="step-media"><span class="step-num" aria-hidden="true"></span><img src="images/care-plan-digital.webp" width="1122" height="1402" loading="lazy" decoding="async" alt="A dentist and patient talking in a consultation setting" /></div>
+        <article class="step-card plain reveal">
+          <span class="step-num" aria-hidden="true"></span>
           <div class="step-body"><h3>Describe it</h3><p>What you notice, when it started, and what makes it better or worse.</p></div>
         </article>
-        <article class="step-card reveal">
-          <div class="step-media"><span class="step-num" aria-hidden="true"></span><img src="images/care-discussion.webp" width="1122" height="1402" loading="lazy" decoding="async" alt="A dentist listening to a patient" /></div>
+        <article class="step-card plain reveal">
+          <span class="step-num" aria-hidden="true"></span>
           <div class="step-body"><h3>Be examined</h3><p>An assessment of how the jaw moves and where the discomfort sits.</p></div>
         </article>
-        <article class="step-card reveal">
-          <div class="step-media"><span class="step-num" aria-hidden="true"></span><img src="images/care-planning.webp" width="1122" height="1402" loading="lazy" decoding="async" alt="A dentist explaining findings to a patient" /></div>
+        <article class="step-card plain reveal">
+          <span class="step-num" aria-hidden="true"></span>
           <div class="step-body"><h3>Understand the options</h3><p>An explanation of the findings and what can reasonably be done about them.</p></div>
         </article>
       </div>
@@ -494,7 +482,7 @@ def page_about():
           <figcaption class="bio-badge">Dr. Paul A. Andrews</figcaption>
         </figure>
         <div class="bio-body reveal">
-          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-deep); font-weight:700; margin-bottom:.9rem;">Meet your dentist</span>
+          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-text); font-weight:700; margin-bottom:.9rem;">Meet your dentist</span>
           <h2>Dr. Paul A. Andrews, DDS, PhD</h2>
           <p>Dr. Andrews practises general dentistry in Lake Mary, Florida, with particular attention to the jaw: how it moves, where discomfort comes from, and what can reasonably be done about it.</p>
           <p>Patients who come in about jaw pain or facial discomfort often describe being listened to carefully before anything is recommended. That emphasis on understanding first is what this site is built around.</p>
@@ -583,9 +571,9 @@ def page_consulting():
         <p><strong>This page is not for patients.</strong> It describes professional dental consulting and expert opinion work. It is not a dental treatment, it does not create a dentist&ndash;patient relationship, and nothing here is an appointment request. If you are looking for dental care, please use the <a href="services.html">dental services</a> page instead.</p>
       </div>
 
-      <div class="media-split reveal">
+      <div class="prose-card reveal" style="max-width:860px;margin:0 auto;">
         <div class="media-split-text">
-          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-deep); font-weight:700; margin-bottom:.9rem;">For professionals</span>
+          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-text); font-weight:700; margin-bottom:.9rem;">For professionals</span>
           <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem); margin-bottom:1rem;">Dental consulting and expert opinion.</h2>
           <p>Public professional directories list Dr. Paul A. Andrews, DDS, PhD, among practitioners offering dental consulting and expert witness work, including matters involving dental forensics, injury and standards of care.</p>
           <p>This page exists so that enquiries of that kind have a proper route, kept entirely separate from patient appointment requests.</p>
@@ -593,9 +581,6 @@ def page_consulting():
             <p><strong>Scope to be confirmed.</strong> The specific matters Dr. Andrews currently accepts, his availability, jurisdictions, fee structure and engagement terms have not been verified. Nothing is stated here beyond what public directory listings support.</p>
           </div>
         </div>
-        <figure class="media-split-figure">
-          <img src="images/care-plan-digital.webp" width="1122" height="1402" loading="lazy" decoding="async" alt="Two professionals reviewing documentation together" />
-        </figure>
       </div>
     </div>
   </section>
@@ -742,15 +727,7 @@ def page_resources():
       </div>
 
       <div class="faq-layout">
-        <div class="faq-deco">
-          <img src="images/treatment-room.webp" width="1122" height="1402" loading="lazy" decoding="async" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;" />
-          <div class="deco-tag"><span class="dot"></span>Calm, attentive care</div>
-        </div>
         <div class="faq-list">{items}</div>
-        <div class="faq-deco">
-          <img src="images/consult-hero.webp" width="941" height="1672" loading="lazy" decoding="async" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;" />
-          <div class="deco-tag"><span class="dot"></span>Lake Mary, Florida</div>
-        </div>
       </div>
     </div>
   </section>
@@ -833,7 +810,7 @@ def page_contact():
     <div class="container">
       <div class="media-split">
         <div class="media-split-text reveal">
-          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-deep); font-weight:700; margin-bottom:.9rem;">Find the office</span>
+          <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-text); font-weight:700; margin-bottom:.9rem;">Find the office</span>
           <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem); margin-bottom:1rem;">Lake Mary, Florida</h2>
           <div class="info-row">{SVG['pin']}<span><strong>Address</strong>{ADDRESS} <span class="verify">Confirm</span></span></div>
           <div class="info-row">{SVG['phone']}<span><strong>Phone</strong><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a> <span class="verify">Confirm</span></span></div>

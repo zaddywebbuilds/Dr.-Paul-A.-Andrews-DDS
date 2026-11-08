@@ -79,6 +79,9 @@ python build/build.py
 - Nothing is cropped — each media box matches its photograph's own aspect ratio.
 - Nothing is upscaled — no output is larger than its source.
 - No photograph is used as a background, and no text sits over one.
+- No photograph appears twice. Every content image is used exactly once;
+  only the nav avatar and Dr. Andrews' portrait repeat, and the manifest
+  explains why.
 - Colour grading lives in CSS, so the source files stay untouched.
 
 Only the portrait of Dr. Andrews and the office exterior are real.
@@ -96,8 +99,15 @@ to 320px.
 Verified at 320, 375, 390, 430, 768, 1024 and 1440px across all nine pages:
 no horizontal overflow and no clipped element at any of them.
 
-Not yet done: a full WCAG 2.2 AA audit, and testing with assistive
-technology. See `accessibility.html`.
+Text contrast was measured programmatically on every text node of all nine
+pages against WCAG AA. The Oasis coral (#E5664A) reaches only 2.7:1 on cream,
+so a deeper burnt coral (#B23F1B, 5.3:1) is used wherever coral carries
+words, while the original stays for gradients, icons and decorative marks.
+All nine pages now pass.
+
+Not yet done: testing with assistive technology, and a full manual WCAG 2.2
+AA review covering non-text contrast and every interactive state.
+See `accessibility.html`.
 
 ## SEO
 

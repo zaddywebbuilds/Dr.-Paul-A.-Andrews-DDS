@@ -23,14 +23,46 @@ From `Andrews_Dental_15_Image_Kit`. Its own README states these are concept
 visuals, not photographs, and must not be presented as the real practice.
 Every page that shows one carries a visible note saying exactly that.
 
+**Each one is used exactly once across the whole site.**
+
 | File | Size | Used on | Replace with |
 |---|---|---|---|
-| `consult-hero` | 941×1672 (9:16) | Interior page heroes, a service card | A real consultation photograph, portrait format |
-| `treatment-room` | 1122×1402 (4:5) | "A look inside", General Dental Care card, FAQ | The actual treatment room |
-| `tmj-exam` | 1122×1402 (4:5) | TMJ card, TMJ page, "TMJ & Jaw Comfort" | A real jaw examination, with patient consent |
-| `care-planning` | 1122×1402 (4:5) | Restorative card, "Personalized Dental Care", a step card | A real treatment-planning conversation |
-| `care-discussion` | 1122×1402 (4:5) | Oral Health card, "Clear, Thoughtful Guidance", a step card | A real consultation |
-| `care-plan-digital` | 1122×1402 (4:5) | Consulting card, "Professional Consulting", a step card | A real chairside discussion |
+| `consult-hero` | 941×1672 | TMJ page, side figure | A real consultation photograph |
+| `care-planning` | 1122×1402 | Home, "Personalized Dental Care" | A real treatment-planning conversation |
+| `tmj-exam` | 1122×1402 | Home, "TMJ & Jaw Comfort" | A real jaw examination, with consent |
+| `care-discussion` | 1122×1402 | Home, "Clear, Thoughtful Guidance" | A real consultation |
+| `care-plan-digital` | 1122×1402 | Home, "Professional Consulting" | A real chairside discussion |
+| `treatment-room` | 1122×1402 | Home, "A look inside" | The actual treatment room |
+| `operatory` | 300×333 | Home, General Dental Care card | The actual operatory |
+| `jaw-discomfort` | 299×333 | Home, TMJ & Jaw Discomfort card | Licensed lifestyle photograph |
+| `instruments` | 299×333 | Home, Restorative Dentistry card | The practice's own instruments |
+| `checkup` | 299×333 | Home, Oral Health Consultations card | A real check-up, with consent |
+| `xray-consult` | 299×334 | Home, Dental Trauma Evaluation card | A real imaging review |
+| `clinical-team` | 299×333 | Home, Professional Consulting card | The actual team |
+| `reception` | 299×334 | Home, step 1 "Reach Out" | The actual reception |
+| `patient-smile` | 300×334 | Home, step 2 "Discuss Your Concerns" | A real patient, with consent |
+| `waiting-lounge` | 300×333 | Home, step 3 "Plan Your Next Steps" | The actual waiting area |
+
+The nine 299×333 frames are small by design. They are placed in compact
+horizontal cards where they render at roughly 150–230px wide, i.e. below
+their native size, so they stay sharp. Do not move them into a full-width
+slot without replacing them first.
+
+## No image appears twice
+
+Every content photograph above is used in exactly one place. Two deliberate
+exceptions:
+
+- `dr-andrews-avatar` is the navigation chip and appears on all nine pages.
+  It is interface furniture, like a logo, not content imagery.
+- `dr-andrews` appears twice: the homepage hero and the About page portrait.
+  It is the only real photograph of him that exists. The homepage
+  "Meet your dentist" section was made text-only so it does not repeat the
+  hero a third time.
+
+Pages with no photographs at all, by design: services (icon-led cards),
+consulting, patient resources, privacy and accessibility. Their heroes are
+text-led, which also removed a large amount of empty space.
 
 ---
 

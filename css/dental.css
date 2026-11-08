@@ -90,7 +90,9 @@
    No gradient or text is laid over the image. */
 .osw-product.portrait {
   aspect-ratio: 4/5;
-  width: clamp(240px, 30vw, 400px);
+  /* Sized to fill the stage beside the glass panels, so the hero has
+     no slack around the portrait. */
+  width: clamp(240px, 33vw, 468px);
   background: var(--c-cream-deep);
   border-radius: 28px;
 }
@@ -389,7 +391,7 @@
 .steps-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   counter-reset: step;
 }
 .step-card {
@@ -650,7 +652,7 @@
 .action-trio {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   max-width: 720px;
   margin: 0 auto 2rem;
 }
@@ -807,7 +809,7 @@ summary:focus-visible {
 .fact-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
 }
 
 /* Map embed */
@@ -950,6 +952,179 @@ blockquote.review-tile { margin: 0; display: flex; flex-direction: column; }
 .osw-scene { flex-direction: column; }
 
 /* Four reviews read best as one row on desktop, never an orphan card. */
-.reviews-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.reviews-grid { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
 .reviews-grid .review-tile { padding: 1.25rem; }
 .reviews-grid .quote { font-size: .98rem; }
+
+/* ------------------------------------------------------------
+   18. ICON-LED CARDS
+   The services page and the TMJ steps carry no photograph: every
+   photograph on the site is used exactly once, and the homepage
+   already shows them. These cards lead with an icon instead.
+   ------------------------------------------------------------ */
+.service-tile-icon {
+  width: 54px;
+  height: 54px;
+  margin: 1.5rem 1.5rem 0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--c-coral), var(--c-coral-deep));
+  box-shadow: 0 8px 20px rgba(229, 102, 74, 0.3);
+  flex-shrink: 0;
+}
+.service-tile-icon svg { width: 24px; height: 24px; }
+.service-tile:nth-child(2) .service-tile-icon { background: linear-gradient(135deg, var(--c-sage), #6B7D5A); box-shadow: 0 8px 20px rgba(138,154,123,.3); }
+.service-tile:nth-child(3) .service-tile-icon { background: linear-gradient(135deg, var(--c-gold), #A6803F); box-shadow: 0 8px 20px rgba(201,169,97,.3); }
+.service-tile:nth-child(4) .service-tile-icon { background: linear-gradient(135deg, var(--c-violet), #8B7DA6); box-shadow: 0 8px 20px rgba(180,166,201,.3); }
+.service-tile:nth-child(5) .service-tile-icon { background: linear-gradient(135deg, #E8A87C, var(--c-coral-deep)); }
+.service-tile:nth-child(6) .service-tile-icon { background: linear-gradient(135deg, var(--c-sage), var(--c-gold)); }
+.service-tile-icon + .service-tile-body { padding-top: 1rem; }
+
+/* Numbered step card with no media panel. */
+.step-card.plain { padding: 1.5rem; }
+.step-card.plain .step-num { position: static; margin-bottom: .9rem; }
+.step-card.plain .step-body { padding: 0; }
+
+/* Doctor intro on the homepage: two readable columns, no repeated portrait. */
+.doctor-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  box-shadow: var(--sh-glass);
+}
+.doctor-intro h3 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .75rem; }
+.doctor-intro p { font-size: .96rem; }
+@media (max-width: 820px) { .doctor-intro { grid-template-columns: 1fr; } }
+
+/* ------------------------------------------------------------
+   19. DENSITY
+   Portrait photographs in wide cards left tall empty boxes. These
+   cards run horizontally instead: the photograph keeps its own
+   aspect ratio (still never cropped) at close to its native size,
+   so the cards are compact and the images stay sharp.
+   ------------------------------------------------------------ */
+
+/* Homepage service cards: photo left, copy right, two per row. */
+.services-grid { grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); }
+.services-grid .service-tile { flex-direction: row; align-items: stretch; }
+.services-grid .service-tile-media {
+  aspect-ratio: auto;
+  flex: 0 0 38%;
+  max-width: 230px;
+  height: auto;
+}
+.services-grid .service-tile-media img { height: 100%; width: 100%; object-fit: cover; }
+.services-grid .service-tile-body { padding: 1.25rem 1.35rem; }
+.services-grid .service-tile h3 { font-size: 1.2rem; }
+.services-grid .service-tile p { font-size: .9rem; }
+
+/* First-visit steps: same treatment, three across. */
+.steps-grid .step-card { flex-direction: row; display: flex; align-items: stretch; }
+.steps-grid .step-media {
+  aspect-ratio: auto;
+  flex: 0 0 38%;
+  max-width: 150px;
+  height: auto;
+}
+.steps-grid .step-media img { height: 100%; width: 100%; object-fit: cover; }
+.steps-grid .step-body { padding: 1.15rem 1.25rem; }
+.steps-grid .step-card .step-num { top: 10px; left: 10px; width: 32px; height: 32px; font-size: .95rem; }
+
+/* Below the two-column breakpoint the cards stack back to vertical. */
+@media (max-width: 520px) {
+  .services-grid .service-tile,
+  .steps-grid .step-card { flex-direction: column; }
+  .services-grid .service-tile-media,
+  .steps-grid .step-media { flex: none; max-width: none; width: 100%; aspect-ratio: 299/333; }
+}
+
+/* Tighten the vertical rhythm so sections read as one continuous page. */
+.section { padding: clamp(1.25rem, 2.2vw, 1.9rem) 0; }
+.section-head { margin-bottom: 1.35rem; }
+.section-head .eyebrow { margin-bottom: .6rem; }
+.section-head h2 { margin-bottom: .6rem; }
+.grid { gap: 1rem; }
+.why-grid { gap: 1rem; }
+.steps-grid { gap: 1rem; }
+
+/* The interior hero no longer holds a photograph, so it does not need
+   to reserve a stage. */
+.osw.osw-small { min-height: 0; padding-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.osw.osw-small .osw-title { margin-top: .5rem; }
+.osw.osw-small .osw-stage { display: none; }
+
+/* The stage no longer reserves height for a tall video frame. */
+.osw-scene { min-height: 0; }
+
+/* `.service-tile .row a` is more specific than `.btn-gold`, so the gold
+   buttons were rendering coral-on-gold and reading as blank pills. */
+.service-tile .row a.btn-gold { color: var(--c-ink); }
+.service-tile .row a.btn-gold:hover { color: var(--c-ink); }
+.service-tile .row a.btn-glass { color: var(--c-ink); }
+.service-tile .row a.btn-glass:hover { color: var(--c-coral-deep); }
+
+/* ------------------------------------------------------------
+   20. TEXT CONTRAST
+   The Oasis coral (#E5664A) is a display colour: on cream it reaches
+   only 2.7:1, below the 4.5:1 WCAG AA needs for body-size text. A
+   deeper burnt coral is used wherever coral carries words, while the
+   original stays for gradients, icons and decorative marks.
+   ------------------------------------------------------------ */
+:root {
+  --c-coral-text: #B23F1B;   /* 5.3:1 on cream, 4.7:1 on deep cream */
+  --c-gold-text:  #7D6322;   /* 5.2:1 on cream */
+}
+
+a { color: var(--c-coral-text); }
+a:hover { color: var(--c-gold-text); }
+
+.eyebrow,
+.section-head .eyebrow,
+.osw-widget-eyebrow,
+.osw-logo small,
+.osw-logo .cred,
+.product-nameplate span,
+.osw-list-tabs span,
+.bio-badge,
+.rev-when,
+.field .req,
+.crumbs a:hover,
+.content-main blockquote cite,
+.service-tile .row a,
+.mini-dir .arrow,
+.sidebar ul li a:hover,
+.foot-contact a:hover,
+.glass-chip:hover,
+.pill-nav a:hover,
+.mini-dir a:hover,
+.m-link:hover,
+.menu-drawer a.m-link[aria-current="page"],
+.faq-q .arrow,
+.inside-caption em,
+.info-row svg { color: var(--c-coral-text); }
+
+/* Stars are decorative (aria-hidden) and the rating is given as text,
+   but they are darkened so they still pass on their own. */
+.stars,
+.review-tile .stars,
+.rating-score .stars,
+.osw-list .stars { color: var(--c-gold-text); }
+
+/* Keep the display colour where coral is a shape, not a word. */
+.cat-list .dot { background: var(--c-coral-deep); }
+.osw-title h1 .glow {
+  background: linear-gradient(135deg, #B9521F 0%, #C2461F 50%, #8F2F12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
