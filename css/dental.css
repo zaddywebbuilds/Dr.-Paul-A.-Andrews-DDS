@@ -1,0 +1,955 @@
+/* ============================================================
+   DR. PAUL A. ANDREWS, DDS, PhD — dental layer
+   Loaded AFTER theme.css (the Oasis design system).
+
+   theme.css is kept byte-for-byte as it ships on the Oasis site so
+   the hero frame, glass, gradients, shadows and rhythm stay identical.
+   Everything below either adapts an Oasis component to dentistry or
+   adds a component Oasis did not have.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. PHOTOGRAPHY TREATMENT
+   A single grade applied in CSS so source photos stay untouched.
+   ------------------------------------------------------------ */
+.dental-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(0.97) brightness(1.035);
+}
+
+.dental-photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--c-cream-deep);
+  box-shadow:
+    0 20px 55px rgba(120, 70, 50, .13),
+    0 1px 0 rgba(255, 255, 255, .65) inset;
+}
+
+.dental-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 244, 232, .06),
+    transparent 55%,
+    rgba(42, 31, 26, .09)
+  );
+}
+
+/* Apply the same grade to every photo already inside an Oasis component,
+   so the whole page reads as one commissioned shoot. */
+.why-media img,
+.service-tile-media img,
+.bx-tile img.bg,
+.osw-product img,
+.inside-stage img,
+.step-card img,
+.bio-portrait img {
+  filter: saturate(0.88) contrast(0.97) brightness(1.035);
+}
+
+/* ------------------------------------------------------------
+   2. HERO — brand lockup + centrepiece
+   ------------------------------------------------------------ */
+
+/* The practice name is longer than "Oasis Massage Studio"; give it room
+   and a tighter tracking so the three-column bar stays balanced. */
+.osw-logo.practice {
+  letter-spacing: 0.08em;
+  font-size: 1rem;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.osw-logo.practice b {
+  font-weight: 600;
+  display: block;
+}
+.osw-logo.practice .cred {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.56rem;
+  letter-spacing: 0.3em;
+  color: var(--c-ink-soft);
+  margin-top: 3px;
+  font-weight: 600;
+}
+.osw-logo.practice small {
+  letter-spacing: 0.26em;
+  font-size: 0.55rem;
+  margin-top: 5px;
+}
+
+/* The hero frame matches the portrait's own 4:5 ratio, so the whole
+   photograph is shown: nothing is cropped away and nothing is scaled up.
+   No gradient or text is laid over the image. */
+.osw-product.portrait {
+  aspect-ratio: 4/5;
+  width: clamp(240px, 30vw, 400px);
+  background: var(--c-cream-deep);
+  border-radius: 28px;
+}
+.osw-product.portrait img { object-fit: contain; }
+
+/* The 9:16 concept render keeps its own ratio on interior pages. */
+.osw-product.tall {
+  aspect-ratio: 941/1672;
+  width: clamp(210px, 24vw, 310px);
+  background: var(--c-cream-deep);
+}
+.osw-product.tall img { object-fit: contain; }
+
+/* Name plate sits under the frame, never over the photograph. */
+.product-nameplate {
+  margin: .85rem auto 0;
+  max-width: 300px;
+  background: rgba(255, 255, 255, 0.80);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid var(--c-glass-border);
+  border-radius: 16px;
+  padding: .7rem .95rem;
+  box-shadow: var(--sh-glass);
+  text-align: center;
+}
+.product-nameplate strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  line-height: 1.15;
+}
+.product-nameplate span {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-coral-deep);
+  font-weight: 700;
+  margin-top: 3px;
+}
+
+/* Responsive chip labels: the long label on desktop, a short one on
+   phones, so the three-column bar never overruns the frame. */
+.glass-chip .t-short { display: none; }
+@media (max-width: 640px) {
+  .glass-chip .t-full  { display: none; }
+  .glass-chip .t-short { display: inline; }
+}
+
+/* ------------------------------------------------------------
+   3. HERO SIDE PANELS
+   ------------------------------------------------------------ */
+
+/* Round abstract dental mark used in the left widget. */
+.tooth-orb {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto .6rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #FFFFFF 0%, var(--c-blush) 55%, var(--c-peach) 100%);
+  border: 1px solid var(--c-glass-border);
+  box-shadow: 0 8px 20px rgba(229, 102, 74, 0.18), inset 0 1px 0 rgba(255, 255, 255, .9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-coral-deep);
+}
+.tooth-orb svg { width: 24px; height: 24px; }
+
+/* Compact category chips inside a hero widget. */
+.cat-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin: 0;
+}
+.cat-list li {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--c-ink);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  padding: .36rem .6rem;
+}
+.cat-list .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--c-coral-deep);
+}
+.cat-list .dot.sage   { background: var(--c-sage); }
+.cat-list .dot.gold   { background: var(--c-gold); }
+.cat-list .dot.violet { background: var(--c-violet); }
+
+/* Mini service directory in the right hero panel. */
+.mini-dir {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  margin: 0;
+}
+.mini-dir li { margin: 0; }
+.mini-dir a {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .42rem .2rem;
+  font-size: 0.75rem;
+  color: var(--c-ink);
+  border-bottom: 1px solid rgba(120, 80, 60, 0.10);
+  transition: color .2s, padding-left .2s;
+}
+.mini-dir li:last-child a { border-bottom: none; }
+.mini-dir a:hover { color: var(--c-coral-deep); padding-left: .4rem; }
+.mini-dir .ico {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--c-coral), var(--c-coral-deep));
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(229, 102, 74, 0.28);
+}
+.mini-dir .ico svg { width: 13px; height: 13px; }
+.mini-dir .ico.sage   { background: linear-gradient(135deg, var(--c-sage), #6B7D5A); box-shadow: 0 4px 10px rgba(138, 154, 123, .3); }
+.mini-dir .ico.gold   { background: linear-gradient(135deg, var(--c-gold), #A6803F); box-shadow: 0 4px 10px rgba(201, 169, 97, .3); }
+.mini-dir .ico.violet { background: linear-gradient(135deg, var(--c-violet), #8B7DA6); box-shadow: 0 4px 10px rgba(180, 166, 201, .3); }
+.mini-dir .arrow { margin-left: auto; color: var(--c-coral-deep); font-size: .8rem; opacity: .55; }
+
+/* ------------------------------------------------------------
+   4. BOTTOM FLOATING PILL NAV (under the hero headline)
+   ------------------------------------------------------------ */
+.pill-nav {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1.4rem;
+}
+.pill-nav a {
+  background: var(--c-glass-strong);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--c-glass-border);
+  border-radius: 999px;
+  padding: .5rem 1rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  box-shadow: var(--sh-glass);
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  transition: transform .25s, color .25s;
+}
+.pill-nav a:hover { transform: translateY(-2px); color: var(--c-coral-deep); }
+.pill-nav a svg { width: 13px; height: 13px; }
+
+/* ------------------------------------------------------------
+   5. MOBILE DRAWER MENU
+   Oasis hid its extra chips on small screens; a real site needs a
+   reachable menu, so the "Menu" chip opens a glass drawer.
+   ------------------------------------------------------------ */
+.menu-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  background: rgba(42, 31, 26, 0.38);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.menu-drawer.open { display: block; }
+.menu-drawer-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: min(330px, 86vw);
+  background: rgba(253, 244, 232, 0.96);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+  border-right: 1px solid var(--c-glass-border);
+  box-shadow: 28px 0 70px rgba(120, 70, 50, 0.26);
+  padding: 1.5rem 1.35rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  animation: drawerIn .3s cubic-bezier(.22, 1, .36, 1) both;
+}
+@keyframes drawerIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+.menu-drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: .6rem;
+  border-bottom: 1px solid rgba(120, 80, 60, 0.14);
+}
+.menu-drawer-close {
+  background: var(--c-glass-strong);
+  border: 1px solid var(--c-glass-border);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: var(--c-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.menu-drawer a.m-link {
+  padding: .72rem .25rem;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--c-ink);
+  border-bottom: 1px solid rgba(120, 80, 60, 0.10);
+}
+.menu-drawer a.m-link:hover,
+.menu-drawer a.m-link[aria-current="page"] { color: var(--c-coral-deep); }
+.menu-drawer .m-actions { display: flex; flex-direction: column; gap: .5rem; margin-top: 1.1rem; }
+.menu-drawer .m-actions .btn { justify-content: center; }
+@media (prefers-reduced-motion: reduce) {
+  .menu-drawer-panel { animation: none; }
+}
+
+/* ------------------------------------------------------------
+   6. "A LOOK INSIDE" — cinematic image-led section
+   ------------------------------------------------------------ */
+.inside-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) 1.1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+@media (max-width: 860px) { .inside-layout { grid-template-columns: 1fr; } }
+
+/* The figure matches the photograph's own 4:5 ratio, so the full frame
+   is visible. No text or gradient is placed over it. */
+.inside-stage {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--c-cream-deep);
+  box-shadow: var(--sh-deep);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.inside-stage img { width: 100%; height: 100%; object-fit: cover; }
+
+.inside-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.inside-caption {
+  color: var(--c-ink);
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+  line-height: 1.12;
+  max-width: 20ch;
+  margin: 0;
+}
+.inside-actions .btn-row { justify-content: flex-start; }
+
+@media (max-width: 640px) {
+  .inside-actions { align-items: stretch; }
+  .inside-actions .btn-row { justify-content: stretch; }
+  .inside-actions .btn { flex: 1; justify-content: center; }
+}
+
+/* ------------------------------------------------------------
+   7. FIRST VISIT — three steps
+   ------------------------------------------------------------ */
+.steps-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  counter-reset: step;
+}
+.step-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-glass);
+  transition: transform .3s, box-shadow .3s;
+}
+.step-card:hover { transform: translateY(-4px); box-shadow: var(--sh-deep); }
+.step-media {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--c-blush);
+  position: relative;
+}
+.step-media img { width: 100%; height: 100%; object-fit: cover; }
+.step-num {
+  counter-increment: step;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--c-glass-border);
+  box-shadow: var(--sh-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-coral-deep);
+}
+.step-num::before { content: counter(step); }
+.step-body { padding: 1.35rem; }
+.step-body h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: .45rem; }
+.step-body p { font-size: 0.92rem; margin: 0; }
+
+/* ------------------------------------------------------------
+   8. MEET THE DOCTOR — editorial two-column
+   ------------------------------------------------------------ */
+.bio-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) 1.15fr;
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  align-items: center;
+}
+.bio-portrait {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 1122/1402;
+  background: var(--c-cream-deep);
+  box-shadow: var(--sh-deep);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.bio-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.bio-badge {
+  display: block;
+  margin-top: .85rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.84);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--c-glass-border);
+  border-radius: 14px;
+  padding: .6rem .8rem;
+  box-shadow: var(--sh-glass);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--c-coral-deep);
+}
+.bio-body h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 1rem; }
+.cred-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 1.25rem 0 0;
+}
+.cred-list li {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  padding: .45rem .9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+@media (max-width: 860px) {
+  .bio-layout { grid-template-columns: 1fr; }
+  .bio-portrait { max-width: 420px; margin: 0 auto; }
+}
+
+/* ------------------------------------------------------------
+   9. VERIFICATION FLAGS
+   Every unconfirmed business fact is marked in the page itself so
+   nothing unverified can quietly reach production.
+   ------------------------------------------------------------ */
+.verify {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: rgba(201, 169, 97, 0.16);
+  border: 1px dashed rgba(166, 128, 63, 0.55);
+  color: #7A5B22;
+  border-radius: 999px;
+  padding: .2rem .6rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--sans);
+  vertical-align: middle;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* A FAQ question plus its "pending" flag must be able to wrap, or the
+   row pushes past the frame on narrow phones. */
+.faq-q { flex-wrap: wrap; gap: .5rem 1rem; }
+.faq-q .arrow { margin-left: auto; }
+.verify::before { content: "⚑"; font-size: .7rem; line-height: 1; }
+
+.verify-note {
+  display: block;
+  background: rgba(201, 169, 97, 0.12);
+  border: 1px dashed rgba(166, 128, 63, 0.5);
+  border-radius: var(--r-md);
+  padding: .9rem 1.1rem;
+  font-size: 0.84rem;
+  color: #6E5220;
+  margin: 1rem 0;
+}
+.verify-note strong { color: #5A4219; }
+.verify-note p { color: #6E5220; margin: 0; }
+.verify-note p + p { margin-top: .5rem; }
+
+/* Dark contexts (CTA strip / footer) need a lighter treatment. */
+.cta-strip .verify,
+.foot .verify {
+  background: rgba(224, 201, 138, 0.18);
+  border-color: rgba(224, 201, 138, 0.6);
+  color: #F0DCAE;
+}
+
+/* ------------------------------------------------------------
+   10. ENQUIRY FORM
+   Deliberately collects no symptoms or clinical detail.
+   ------------------------------------------------------------ */
+.enquiry {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--c-glass-border);
+  border-radius: var(--r-lg);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  box-shadow: var(--sh-glass);
+  text-align: left;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.enquiry h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-bottom: .35rem;
+  color: var(--c-ink);
+}
+.enquiry > p { font-size: 0.88rem; margin-bottom: 1.25rem; }
+.field-row { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--c-ink-soft);
+  margin-bottom: .4rem;
+}
+.field .req { color: var(--c-coral-deep); }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--c-ink);
+  background: rgba(253, 244, 232, 0.7);
+  border: 1px solid rgba(120, 80, 60, 0.2);
+  border-radius: var(--r-sm);
+  padding: .78rem .9rem;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.field textarea { resize: vertical; min-height: 104px; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--c-coral);
+  box-shadow: 0 0 0 3px rgba(255, 140, 114, 0.22);
+}
+.field .hint { font-size: 0.74rem; color: var(--c-ink-soft); margin: .35rem 0 0; }
+
+.consent {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  font-size: 0.82rem;
+  color: var(--c-ink-soft);
+  margin: 1rem 0 1.25rem;
+  line-height: 1.45;
+}
+.consent input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--c-coral-deep);
+}
+.enquiry .btn { width: 100%; justify-content: center; }
+
+.form-status {
+  display: none;
+  margin-top: 1rem;
+  border-radius: var(--r-sm);
+  padding: .85rem 1rem;
+  font-size: 0.88rem;
+}
+.form-status.show { display: block; }
+.form-status.err {
+  background: rgba(229, 102, 74, 0.12);
+  border: 1px solid rgba(229, 102, 74, 0.4);
+  color: #8C3A22;
+}
+.form-status.ok {
+  background: rgba(138, 154, 123, 0.16);
+  border: 1px solid rgba(138, 154, 123, 0.5);
+  color: #43523A;
+}
+
+/* Three visual actions above the form (request / call / directions). */
+.action-trio {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+.action-card {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  color: #FFF4E8;
+  transition: transform .25s, background .25s;
+  display: block;
+}
+.action-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.22); color: #fff; }
+.action-card .ico {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto .7rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--c-coral), var(--c-coral-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(229, 102, 74, 0.35);
+}
+.action-card .ico svg { width: 21px; height: 21px; }
+.action-card strong { display: block; font-size: 0.98rem; font-weight: 600; margin-bottom: .2rem; }
+.action-card span { display: block; font-size: 0.78rem; color: rgba(255, 235, 215, 0.82); }
+
+/* ------------------------------------------------------------
+   11. REVIEWS — sample-layout state
+   ------------------------------------------------------------ */
+.review-tile.sample { border-style: dashed; border-color: rgba(166, 128, 63, 0.45); }
+.review-tile.sample .quote { color: var(--c-ink-soft); }
+.review-tile .skeleton {
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(120, 80, 60, .12), rgba(120, 80, 60, .05));
+  margin-bottom: .5rem;
+}
+.review-tile .skeleton.s2 { width: 86%; }
+.review-tile .skeleton.s3 { width: 64%; margin-bottom: 1rem; }
+
+/* ------------------------------------------------------------
+   12. FLOATING CALL BUTTON (replaces the Oasis WhatsApp bubble)
+   ------------------------------------------------------------ */
+.float-call {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--c-coral), var(--c-coral-deep));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(229, 102, 74, 0.48);
+  z-index: 95;
+  animation: pulseCoral 2.6s infinite;
+}
+.float-call svg { width: 26px; height: 26px; color: #fff; }
+@keyframes pulseCoral {
+  0%, 100% { box-shadow: 0 12px 30px rgba(229, 102, 74, 0.48); }
+  50%      { box-shadow: 0 12px 52px rgba(229, 102, 74, 0.72); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-call { animation: none; }
+}
+@media (max-width: 640px) {
+  .float-call { bottom: 84px; right: 14px; width: 54px; height: 54px; }
+  .float-call svg { width: 24px; height: 24px; }
+}
+
+/* ------------------------------------------------------------
+   13. SCROLL REVEAL
+   ------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .7s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Visible focus ring for keyboard users across every control. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--c-coral-deep);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 300;
+  background: var(--c-ink);
+  color: #FBF1E5;
+  padding: .75rem 1.1rem;
+  border-radius: 0 0 var(--r-sm) 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.skip-link:focus { left: 0; color: #FBF1E5; }
+
+/* ------------------------------------------------------------
+   14. INTERIOR PAGE HELPERS
+   ------------------------------------------------------------ */
+.prose-card {
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: var(--sh-glass);
+}
+.prose-card h2:first-child,
+.prose-card h3:first-child { margin-top: 0; }
+
+.media-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+.media-split.flip .media-split-text { order: 2; }
+@media (max-width: 860px) {
+  .media-split { grid-template-columns: 1fr; }
+  .media-split.flip .media-split-text { order: 0; }
+}
+.media-split-figure {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: var(--sh-deep);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: var(--c-cream-deep);
+}
+.media-split-figure img { width: 100%; height: 100%; object-fit: cover; }
+
+.fact-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Map embed */
+.map-frame {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--sh-glass);
+  background: var(--c-cream-deep);
+  /* Height, not aspect-ratio: a min-height combined with aspect-ratio
+     forces the box wider than its container on narrow phones. */
+  height: clamp(300px, 46vw, 520px);
+  width: 100%;
+}
+.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ------------------------------------------------------------
+   15. HERO RESPONSIVE TUNING
+   theme.css already collapses .osw-stage to one column at 900px and
+   re-orders the centrepiece first. These rules stop the dental
+   additions from colliding on the smallest screens.
+   ------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .osw-logo.practice { font-size: .9rem; }
+  .pill-nav { margin-top: 1.1rem; }
+}
+
+@media (max-width: 640px) {
+  /* Bar becomes: menu | name | book. Everything else lives in the drawer.
+     Without this the right-hand group runs past the frame and is clipped. */
+  .osw-bar-right .glass-chip.secondary { display: none; }
+  .osw-bar-right .osw-avatar { display: none; }
+  .osw-bar-right .glass-chip { padding: .5rem .8rem; font-size: .74rem; }
+  .osw-bar-left .glass-chip { padding: .5rem .8rem; font-size: .74rem; }
+  .osw-logo.practice { font-size: .78rem; letter-spacing: .05em; }
+  .osw-logo.practice .cred { font-size: .5rem; letter-spacing: .22em; }
+  .osw-logo.practice small { font-size: .48rem; letter-spacing: .18em; }
+
+  .osw-product.portrait { width: min(230px, 66vw); }
+  .product-nameplate { padding: .55rem .65rem; }
+  .product-nameplate strong { font-size: .88rem; }
+  .product-nameplate span { font-size: .55rem; }
+
+  .pill-nav a { font-size: .72rem; padding: .45rem .8rem; }
+  .step-body { padding: 1.1rem; }
+  .enquiry { padding: 1.25rem; }
+}
+
+/* Narrow phones: the three-column bar has to fit Menu + name + Book
+   inside roughly 265px of usable width, so tighten the gaps and type. */
+@media (max-width: 430px) {
+  .osw-bar { gap: .4rem; }
+  .osw-bar-left, .osw-bar-right { gap: .35rem; }
+  .osw-bar-right .glass-chip,
+  .osw-bar-left  .glass-chip { padding: .48rem .62rem; font-size: .7rem; }
+  .osw-logo.practice { font-size: .68rem; letter-spacing: .03em; }
+  .osw-logo.practice .cred   { font-size: .46rem; letter-spacing: .18em; }
+  .osw-logo.practice small   { font-size: .44rem; letter-spacing: .14em; }
+}
+
+/* Very small phones (320px): keep the hero readable and unclipped. */
+@media (max-width: 360px) {
+  .osw { padding: .85rem .7rem 1.75rem; }
+  .osw-logo.practice { font-size: .62rem; }
+  .osw-logo.practice small { display: none; }
+  .osw-bar-left .glass-chip svg { display: none; }
+  .osw-product.portrait { width: min(200px, 62vw); }
+  .osw-title h1 { font-size: clamp(1.85rem, 9.5vw, 2.5rem); }
+  .pill-nav a { font-size: .68rem; padding: .4rem .7rem; }
+  .cat-list li { font-size: .7rem; }
+  .btn { padding: .85rem 1.1rem; font-size: .86rem; }
+  .mobile-cta .btn { font-size: .8rem; padding: .75rem .35rem; }
+}
+
+/* Nothing may overflow horizontally at any width. */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+
+/* ------------------------------------------------------------
+   16. UNCROPPED MEDIA
+   Every media box is set to the source photograph's own aspect ratio,
+   so `object-fit: cover` has nothing left to trim. Nothing is laid
+   over a photograph, and no photograph is used as a background.
+   ------------------------------------------------------------ */
+.service-tile-media { aspect-ratio: 4/5; }
+.why-media          { aspect-ratio: 4/5; }
+.why-media img      { position: static; width: 100%; height: 100%; }
+.media-split-figure { aspect-ratio: 4/5; }
+.media-split-figure.wide { aspect-ratio: 1672/941; }
+
+/* FAQ: the Oasis layout flanked the list with two decorative photo
+   panels that could only fill their slot by cropping. Nothing here is
+   cropped, so the panels are dropped and the list is centred instead. */
+.faq-deco { display: none; }
+.faq-layout { grid-template-columns: minmax(0, 820px); justify-content: center; }
+
+/* ------------------------------------------------------------
+   17. REVIEWS — real Google reviews with honest dating
+   ------------------------------------------------------------ */
+.rating-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-radius: var(--r-lg);
+  padding: 1.1rem 1.5rem;
+  box-shadow: var(--sh-glass);
+  max-width: 620px;
+  margin: 0 auto 1.75rem;
+}
+.rating-score { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; justify-content: center; }
+.rating-score strong {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--c-ink);
+}
+.rating-score .stars { color: var(--c-gold); font-size: 1.05rem; letter-spacing: .06em; }
+.rating-count { font-size: .86rem; color: var(--c-ink-soft); }
+
+blockquote.review-tile { margin: 0; display: flex; flex-direction: column; }
+.review-tile .quote { flex: 1; }
+.review-tile .who { font-size: .84rem; color: var(--c-ink-soft); font-style: normal; }
+.review-tile .who strong { display: block; color: var(--c-ink); font-size: .92rem; }
+.rev-when { display: block; font-size: .76rem; color: var(--c-ink-soft); margin-top: .15rem; }
+
+@media (max-width: 480px) {
+  .rating-summary { padding: 1rem; }
+  .rating-score strong { font-size: 2rem; }
+}
+
+/* The hero scene stacks the frame and its name plate vertically, so the
+   plate sits under the photograph instead of on top of it. */
+.osw-scene { flex-direction: column; }
+
+/* Four reviews read best as one row on desktop, never an orphan card. */
+.reviews-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.reviews-grid .review-tile { padding: 1.25rem; }
+.reviews-grid .quote { font-size: .98rem; }

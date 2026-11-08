@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zaddywebbuilds.github.io/Dr.-Paul-A.-Andrews-DDS/sitemap.xml
