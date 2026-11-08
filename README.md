@@ -5,11 +5,12 @@ Lake Mary, Florida, built as a faithful dental adaptation of the
 [Oasis Massage Studio](https://zaddyjohn-cyber.github.io/Oasismassagestudio/)
 design system.
 
-> **This is a proposal, not a live practice website.** Business details
-> marked with an amber `Confirm` badge are unverified, and most photography
-> is AI-generated concept imagery. Read
-> [`docs/FACTS-TO-VERIFY.md`](docs/FACTS-TO-VERIFY.md) before publishing
-> anything.
+> **This is a proposal, not a live practice website.** It is presented
+> clean, with no on-page caveats, so the owner sees the finished design.
+> Several business details are still unverified and most photography is
+> AI-generated concept imagery. Everything that needs confirming is
+> recorded in [`docs/FACTS-TO-VERIFY.md`](docs/FACTS-TO-VERIFY.md) — read it
+> before this is pointed at a real domain.
 
 ---
 
@@ -85,8 +86,9 @@ python build/build.py
 - Colour grading lives in CSS, so the source files stay untouched.
 
 Only the portrait of Dr. Andrews and the office exterior are real.
-Everything else is AI-generated concept imagery, labelled as such on every
-page it appears. See [`docs/IMAGE-MANIFEST.md`](docs/IMAGE-MANIFEST.md).
+Everything else is AI-generated concept imagery, held as placeholders until
+the practice supplies its own photography. The manifest says exactly which
+file goes where: [`docs/IMAGE-MANIFEST.md`](docs/IMAGE-MANIFEST.md).
 
 ## Accessibility
 
@@ -135,3 +137,4 @@ Nothing here is invented to look impressive:
 - No form that silently collects health information.
 
 Each gap is tracked in [`docs/FACTS-TO-VERIFY.md`](docs/FACTS-TO-VERIFY.md).
+The site itself carries no caveats, so that file is the only record.

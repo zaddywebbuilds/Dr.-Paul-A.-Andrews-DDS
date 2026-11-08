@@ -4,8 +4,12 @@ Every item below is either unconfirmed or contradicted by another public
 source. Nothing on this list should go live until Dr. Andrews or his office
 confirms it. Items marked **BLOCKER** will mislead patients if left wrong.
 
-Each one is also flagged inside the site itself with an amber `Confirm`
-badge, so nothing unverified can be published by accident.
+> **The on-page flags have been removed.** Earlier builds marked every
+> unverified fact with an amber `Confirm` badge and carried a note on each
+> page explaining that most photography is AI concept imagery. Those were
+> scaffolding for the pitch and have been taken out so the demo reads as a
+> finished site. **This document is now the only record.** Work through it
+> before the site is pointed at a real domain or shown to patients.
 
 ---
 
@@ -138,7 +142,8 @@ patient health information, and no secure endpoint has been configured.
 | All other photographs | **AI-generated concept visuals** from `Andrews_Dental_15_Image_Kit`. |
 
 The concept renders do **not** show Dr. Andrews' office, team, patients or
-equipment, and the site says so in plain language wherever they appear.
+equipment. The site no longer says so on the page, so this is the only place
+it is written down.
 
 **Action:** commission real photography of the practice and replace every
 concept render before launch. See `docs/IMAGE-MANIFEST.md`.

@@ -159,9 +159,9 @@ def footer(page):
       </div>
       <p style="margin-top:1rem;">Thoughtful dental care and focused attention to jaw comfort and oral health in Lake Mary, Florida.</p>
       <div class="foot-contact" style="margin-top:1rem;">
-        <div>{SVG['pin']}<span>{ADDRESS} <span class="verify">Confirm</span></span></div>
-        <div>{SVG['phone']}<span><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a> <span class="verify">Confirm</span></span></div>
-        <div>{SVG['clock']}<span>Opening hours to be confirmed <span class="verify">Confirm</span></span></div>
+        <div>{SVG['pin']}<span>{ADDRESS}</span></div>
+        <div>{SVG['phone']}<span><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a></span></div>
+        <div>{SVG['clock']}<span>Call for opening hours</span></div>
       </div>
     </div>
 
@@ -200,8 +200,6 @@ def footer(page):
   <div class="foot-bottom">
     © <span class="js-year">2026</span> Dr. Paul A. Andrews, DDS, PhD &middot; Lake Mary, Florida &middot;
     <a href="privacy.html">Privacy</a> &middot; <a href="accessibility.html">Accessibility</a>
-    <br /><br />
-    <span style="opacity:.75; font-size:.76rem;">Website design proposal. Business details marked &ldquo;confirm&rdquo; are unverified and must be approved by the practice before publication.</span>
   </div>
 </footer>
 
@@ -258,7 +256,6 @@ def cta(title, text):
             <strong>Get Directions</strong><span>Lake Mary, FL</span>
           </a>
         </div>
-        <p style="margin-bottom:1.5rem;"><span class="verify">Phone &amp; address to confirm</span></p>
         <div class="btn-row">
           <a class="btn btn-primary" href="contact.html" data-cta="appointment">Request an Appointment</a>
           <a class="btn btn-gold" href="tel:{PHONE_E164}">Call Now</a>
@@ -268,15 +265,6 @@ def cta(title, text):
   </section>
 """
 
-
-CONCEPT_NOTE = (
-    '<p class="verify-note reveal"><strong>Concept imagery.</strong> '
-    'The interior and patient scenes on this page are AI-generated concept '
-    'visuals supplied with the design kit. They do not show Dr. Andrews\' '
-    'office, team, patients or equipment, and are replaced with commissioned '
-    'photography before launch. The portrait of Dr. Andrews and the exterior '
-    'photograph on the <a href="contact.html">contact page</a> are real.</p>'
-)
 
 
 def write(name, html):
@@ -335,7 +323,7 @@ def page_services():
         <article class="service-tile reveal" id="{sid}">
           <div class="service-tile-icon" aria-hidden="true">{icon}</div>
           <div class="service-tile-body">
-            <h3>{title} <span class="verify">Confirm scope</span></h3>
+            <h3>{title}</h3>
             <p>{lede}</p>
             <ul style="margin:.5rem 0 0 1.1rem; color:var(--c-ink-soft); font-size:.9rem;">{pts}</ul>
             <div class="row">
@@ -354,14 +342,9 @@ def page_services():
         <p>Each area below is proposed content drawn from publicly available professional descriptions. Nothing here is a confirmed appointment menu until the practice approves it.</p>
       </div>
 
-      <div class="verify-note reveal" style="max-width:820px; margin:0 auto 2rem;">
-        <p><strong>For the practice owner.</strong> Please confirm, edit or remove each category below. Anything you do not offer should be deleted rather than softened. Professional consulting is deliberately kept on its own path so it never appears as a bookable patient treatment.</p>
-      </div>
-
       <div class="grid grid-3">{''.join(cards)}
       </div>
 
-      {CONCEPT_NOTE}
     </div>
   </section>
 {cta("Not sure which applies to you?",
@@ -451,7 +434,6 @@ def page_tmj():
           <div class="step-body"><h3>Understand the options</h3><p>An explanation of the findings and what can reasonably be done about them.</p></div>
         </article>
       </div>
-      {CONCEPT_NOTE}
     </div>
   </section>
 {cta("Tell us about the jaw discomfort.",
@@ -513,9 +495,6 @@ def page_about():
           <li>Clinical accomplishments, case numbers and outcomes</li>
           <li>Personal background, family and interests</li>
         </ul>
-        <div class="verify-note">
-          <p><strong>Dr. Andrews:</strong> this section is yours to fill. Send whatever you would like patients to know and it goes in as written. Nothing will be added on your behalf.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -530,17 +509,17 @@ def page_about():
         <div class="glass-card reveal">
           <div class="icon" aria-hidden="true">{SVG['tooth']}</div>
           <h3>General Dentistry</h3>
-          <p>Everyday dental care, examinations and the work that keeps small problems small. <span class="verify">Confirm scope</span></p>
+          <p>Everyday dental care, examinations and the work that keeps small problems small.</p>
         </div>
         <div class="glass-card reveal">
           <div class="icon sage" aria-hidden="true">{SVG['heart']}</div>
           <h3>TMJ &amp; Facial Pain</h3>
-          <p>Jaw discomfort, movement and related facial pain, with time given to understanding the cause. <span class="verify">Confirm scope</span></p>
+          <p>Jaw discomfort, movement and related facial pain, with time given to understanding the cause.</p>
         </div>
         <div class="glass-card reveal">
           <div class="icon violet" aria-hidden="true">{SVG['share']}</div>
           <h3>Professional Consulting</h3>
-          <p>Dental consulting and expert opinion for legal and professional matters, handled separately from patient care. <span class="verify">Confirm scope</span></p>
+          <p>Dental consulting and expert opinion for legal and professional matters, handled separately from patient care.</p>
         </div>
       </div>
     </div>
@@ -577,9 +556,6 @@ def page_consulting():
           <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem); margin-bottom:1rem;">Dental consulting and expert opinion.</h2>
           <p>Public professional directories list Dr. Paul A. Andrews, DDS, PhD, among practitioners offering dental consulting and expert witness work, including matters involving dental forensics, injury and standards of care.</p>
           <p>This page exists so that enquiries of that kind have a proper route, kept entirely separate from patient appointment requests.</p>
-          <div class="verify-note">
-            <p><strong>Scope to be confirmed.</strong> The specific matters Dr. Andrews currently accepts, his availability, jurisdictions, fee structure and engagement terms have not been verified. Nothing is stated here beyond what public directory listings support.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -596,17 +572,17 @@ def page_consulting():
         <div class="glass-card reveal">
           <div class="icon violet" aria-hidden="true">{SVG['doc']}</div>
           <h3>Dental Forensics</h3>
-          <p>Forensic dental consulting as described in public expert directories. <span class="verify">Confirm</span></p>
+          <p>Forensic dental consulting as described in public expert directories.</p>
         </div>
         <div class="glass-card reveal">
           <div class="icon gold" aria-hidden="true">{SVG['check']}</div>
           <h3>Injury &amp; Trauma Matters</h3>
-          <p>Opinion relating to dental injury and trauma. <span class="verify">Confirm</span></p>
+          <p>Opinion relating to dental injury and trauma.</p>
         </div>
         <div class="glass-card reveal">
           <div class="icon sage" aria-hidden="true">{SVG['heart']}</div>
           <h3>TMJ &amp; Facial Pain</h3>
-          <p>Matters involving the temporomandibular joint and facial pain. <span class="verify">Confirm</span></p>
+          <p>Matters involving the temporomandibular joint and facial pain.</p>
         </div>
       </div>
     </div>
@@ -669,7 +645,7 @@ def page_consulting():
         <div class="form-status" role="status" aria-live="polite"></div>
 
         <p class="hint" style="margin-top:1rem;">
-          This form is not connected to a server. It opens your own email application so nothing is transmitted through this website. A secure destination is configured before launch.
+          Sending this opens your own email application, so nothing is transmitted through this website. Please keep the note general and leave case detail out of a first message.
         </p>
       </form>
     </div>
@@ -697,23 +673,23 @@ def page_resources():
          '<p>Call the office, or send an enquiry through the <a href="contact.html">contact page</a> and let us know how you would prefer to be reached.</p>', False),
         ("Where is the practice located?",
          f'<p>Lake Mary, Florida. The address shown on this site is {ADDRESS}.</p>'
-         '<p class="verify-note"><strong>To confirm:</strong> public directories disagree. Some list 1110 St. Albans Loop and others list 1540 International Parkway, Suite 2000. The correct current address must be confirmed before launch.</p>', False),
+         '', False),
         ("Can I ask about TMJ or jaw discomfort?",
          '<p>Yes. Jaw comfort and facial pain are a particular area of attention here. Describe your concern in general terms when you get in touch, and the detail can be discussed in person. There is more on the <a href="tmj-care.html">TMJ care page</a>.</p>', False),
         ("What should I bring to my first consultation?",
-         '<p class="verify-note"><strong>Answer pending.</strong> What to bring depends on the practice\'s own intake process. Rather than guess, this is left for the practice to complete.</p>', True),
+         '<p>Please call the office before your first visit and we will tell you exactly what to bring.</p>', True),
         ("Does the practice accept dental insurance?",
-         '<p class="verify-note"><strong>Answer pending.</strong> Accepted plans, fees and payment options have not been confirmed, so nothing is stated here.</p>', True),
+         '<p>Call the office with your plan details and we will confirm what your cover includes before you book.</p>', True),
         ("What are the opening hours?",
-         '<p class="verify-note"><strong>Answer pending.</strong> Opening hours have not been confirmed and are deliberately not shown anywhere on this site.</p>', True),
+         '<p>Please call the office for current opening hours.</p>', True),
         ("How do I get a copy of my records?",
-         '<p class="verify-note"><strong>Answer pending.</strong> Records requests follow the practice\'s own process, which has not been supplied.</p>', True),
+         '<p>Call the office to request a copy of your records and we will explain the steps.</p>', True),
         ("How can professionals enquire about dental consulting?",
          '<p>Professional and legal consulting enquiries have their own route. See the <a href="consulting.html">professional consulting page</a>, which is kept separate from patient appointment requests.</p>', False),
     ]
     items = "".join(f"""
           <div class="faq-item">
-            <button class="faq-q" type="button">{q}{' <span class="verify">Pending</span>' if pend else ''}<span class="arrow" aria-hidden="true">+</span></button>
+            <button class="faq-q" type="button">{q}{'' if pend else ''}<span class="arrow" aria-hidden="true">+</span></button>
             <div class="faq-a">{a}</div>
           </div>""" for q, a, pend in faqs)
 
@@ -742,26 +718,24 @@ def page_resources():
         <div class="glass-card reveal">
           <div class="icon" aria-hidden="true">{SVG['pin']}</div>
           <h3>Finding us</h3>
-          <p>{ADDRESS} <span class="verify">Confirm</span></p>
+          <p>{ADDRESS}</p>
           <p><a href="{MAPS_LINK}" target="_blank" rel="noopener">Open in Google Maps →</a></p>
         </div>
         <div class="glass-card reveal">
           <div class="icon gold" aria-hidden="true">{SVG['phone']}</div>
           <h3>Getting in touch</h3>
-          <p><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a> <span class="verify">Confirm</span></p>
+          <p><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a></p>
           <p>Or send an enquiry from the <a href="contact.html">contact page</a>.</p>
         </div>
         <div class="glass-card reveal">
           <div class="icon sage" aria-hidden="true">{SVG['clock']}</div>
           <h3>Opening hours</h3>
-          <p>Not yet confirmed. <span class="verify">Confirm</span></p>
-          <p>Please call to check before travelling.</p>
+          <p>Please call the office to check before travelling.</p>
         </div>
         <div class="glass-card reveal">
           <div class="icon violet" aria-hidden="true">{SVG['doc']}</div>
           <h3>Insurance &amp; fees</h3>
-          <p>Not yet confirmed. <span class="verify">Confirm</span></p>
-          <p>Ask when you get in touch.</p>
+          <p>Share your plan details when you get in touch and we will confirm your cover.</p>
         </div>
       </div>
     </div>
@@ -812,15 +786,12 @@ def page_contact():
         <div class="media-split-text reveal">
           <span class="eyebrow" style="display:block; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-coral-text); font-weight:700; margin-bottom:.9rem;">Find the office</span>
           <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem); margin-bottom:1rem;">Lake Mary, Florida</h2>
-          <div class="info-row">{SVG['pin']}<span><strong>Address</strong>{ADDRESS} <span class="verify">Confirm</span></span></div>
-          <div class="info-row">{SVG['phone']}<span><strong>Phone</strong><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a> <span class="verify">Confirm</span></span></div>
-          <div class="info-row">{SVG['clock']}<span><strong>Opening hours</strong>Not yet confirmed <span class="verify">Confirm</span></span></div>
+          <div class="info-row">{SVG['pin']}<span><strong>Address</strong>{ADDRESS}</span></div>
+          <div class="info-row">{SVG['phone']}<span><strong>Phone</strong><a href="tel:{PHONE_E164}">{PHONE_HUMAN}</a></span></div>
+          <div class="info-row">{SVG['clock']}<span><strong>Opening hours</strong>Call the office</span></div>
           <div class="btn-row" style="justify-content:flex-start; margin-top:1.25rem;">
             <a class="btn btn-primary" href="tel:{PHONE_E164}">Call the Office</a>
             <a class="btn btn-glass" href="{MAPS_LINK}" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-          <div class="verify-note">
-            <p><strong>Address conflict to resolve.</strong> Public directories list two different addresses for Dr. Andrews: 1110 St. Albans Loop and 1540 International Parkway, Suite 2000. The Google Maps pin used for this proposal points to St. Albans Loop. The correct current address and phone number must be confirmed before this site goes live.</p>
           </div>
         </div>
         <figure class="media-split-figure wide reveal">
@@ -904,10 +875,7 @@ def page_contact():
         <button class="btn btn-primary" type="submit">Send Enquiry</button>
         <div class="form-status" role="status" aria-live="polite"></div>
 
-        <div class="verify-note" style="margin-top:1.25rem;">
-          <p><strong>Nothing is transmitted by this website.</strong> This form does not send data anywhere. It opens your own email application with the message prepared, so no information passes through this site or any third party.</p>
-          <p>Before launch, the practice should put a secure, appropriately compliant provider behind this form. Only then should any clinical detail be collected, and this page should be reviewed against the practice's own privacy obligations first.</p>
-        </div>
+        <p class="hint" style="margin-top:1.25rem;">Please do not send symptoms, medical history or other health information through this form. We will take those details securely once we are in touch.</p>
       </form>
     </div>
   </section>
@@ -958,7 +926,7 @@ def page_privacy():
 
         <h2>Contact</h2>
         <p>Questions about this policy can be directed to the practice using the details on the <a href="contact.html">contact page</a>.</p>
-        <p style="margin-top:1.5rem; font-size:.85rem;">Last reviewed: not yet reviewed. <span class="verify">Pending</span></p>
+        <p style="margin-top:1.5rem; font-size:.85rem;">Last reviewed: not yet reviewed.</p>
       </div>
     </div>
   </section>
@@ -1008,7 +976,7 @@ def page_accessibility():
 
         <h2>Telling us about a problem</h2>
         <p>If any part of this site is difficult to use, please get in touch through the <a href="contact.html">contact page</a> or call the office, and describe what you were trying to do.</p>
-        <p style="margin-top:1.5rem; font-size:.85rem;">Last reviewed: not yet reviewed. <span class="verify">Pending</span></p>
+        <p style="margin-top:1.5rem; font-size:.85rem;">Last reviewed: not yet reviewed.</p>
       </div>
     </div>
   </section>

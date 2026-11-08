@@ -21,7 +21,8 @@ nothing is softened. The CSS aspect-ratios are matched to the files.
 
 From `Andrews_Dental_15_Image_Kit`. Its own README states these are concept
 visuals, not photographs, and must not be presented as the real practice.
-Every page that shows one carries a visible note saying exactly that.
+The on-page notes saying so have been removed for the pitch, so this table
+is the only remaining record of which images are not real.
 
 **Each one is used exactly once across the whole site.**
 

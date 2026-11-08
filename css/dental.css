@@ -1128,3 +1128,13 @@ a:hover { color: var(--c-gold-text); }
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.doctor-aside {
+  margin: 0 0 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--c-coral);
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  line-height: 1.45;
+  color: var(--c-ink);
+}
