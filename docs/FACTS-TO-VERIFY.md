@@ -88,30 +88,51 @@ in as written.
 
 ## 6. Reviews
 
-Four reviews are quoted **verbatim** from the public Google Business Profile,
-each with the reviewer's name and the age of the review as Google shows it.
-The real aggregate — **4.7 from 10 reviews** — is displayed, and the page
-links to the complete set.
+**The profile holds 10 reviews: nine 5-star and one 2-star, averaging 4.7.**
+That distribution was read straight off the Google rating histogram, and
+(9x5 + 1x2) / 10 = 4.7 confirms it.
 
-Important points:
+**Only 5 of the 10 can be retrieved without signing in, and all 5 are on
+the site**, quoted verbatim with the reviewer's name and the age of the
+review as Google states it:
 
-- The four shown are a **positive selection**. The profile also contains a
-  two-star review criticising office staff. The link goes to all of them.
-- The reviews are **old**: roughly 7 to 11 years. The site says so on each
-  card and never implies they are recent.
-- **Only five of the ten are reachable.** Signed out, Google shows five and
-  gates the rest behind "See more reviews (5)", which requires an account.
-  The four on the site are the positive four of those five.
-- The fifth visible review is two stars, praises Dr. Andrews but calls the
-  office staff "deplorable" over billing and reminders. It is not on the
-  site. To genuinely show all ten, paste the remaining text from a
-  signed-in Google session and they can be added to the marquee.
-- `aggregateRating` and two `Review` entries appear in the structured data.
+| Reviewer | Stars | Age |
+|---|---|---|
+| Will McDowell | 5 | ~7 years |
+| Lindsay Barnes | 5 | ~11 years |
+| Kelly Montgomery | 5 | ~11 years |
+| Janie Nelson | 5 | ~11 years |
+| Stephanie G | **2** | ~12 years |
 
-**Action:** confirm you are happy to republish these four, and that the
-rating is current. If the profile changes, update both the cards and the
-structured data. Remove the `aggregateRating` block if you would rather not
-make a rating claim in search results.
+Stephanie G's is critical of the office staff over billing and appointment
+reminders, while praising Dr. Andrews himself. It is on the site because the
+brief was to show everything the profile shows. **Remove it if the practice
+would rather not surface it** — it is one card in `index.html`.
+
+### Getting the remaining 5
+
+Every route Google offers a signed-out visitor is gated:
+
+- "See more reviews (5)" opens a sign-in wall
+- Sorting (newest / highest / lowest) requires an account
+- Searching within reviews opens a sign-in popup
+- The topic filters return the same five
+
+To add them, open the profile while signed in, copy each reviewer's name,
+star rating, date and text, and add one `<blockquote class="rev-card">` per
+review in the reviews section of `index.html`. The marquee measures itself,
+so the scroll speed stays the same however many are added — no other change
+is needed.
+
+### Before publication
+
+- Confirm the practice is happy to republish these on its own website.
+- The reviews are old (7-12 years). The site states the age on every card
+  and must keep doing so.
+- `aggregateRating` (4.7 / 10) and two `Review` entries are in the
+  structured data on the homepage. Keep them in step with the profile, or
+  remove the block if the practice would rather not make a rating claim in
+  search results.
 
 ## 7. Insurance, fees and payment
 
