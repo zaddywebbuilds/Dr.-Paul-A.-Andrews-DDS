@@ -32,17 +32,16 @@ page is of that building.
 
 **Action:** confirm the correct current practice address.
 
-## 2. Telephone — **BLOCKER**
+## 2. Telephone — confirmed
 
-| Source | Number |
-|---|---|
-| Yelp, Expert Pages, LinkedIn | (407) 461-2094 |
-| One directory, and Greenberg Dental's listing | (407) 862-0444 |
+**(407) 862-0444** — confirmed by the site owner on 9 November 2026.
 
-The site uses **(407) 461-2094** in every call link, the footer and the
-structured data, because it appears on Dr. Andrews' own LinkedIn profile.
-
-**Action:** confirm. If it is wrong, every `tel:` link needs updating.
+This is now used in every `tel:` link, the footer, the contact page and the
+structured data. Note that public directories also list (407) 461-2094
+against Dr. Andrews' name, and that (407) 862-0444 appears on the Greenberg
+Dental listing at 1110 St Albans Loop. That overlap is consistent with item
+1 below and is worth resolving when the address is settled, but the number
+itself is confirmed.
 
 ## 3. Opening hours
 
@@ -100,8 +99,13 @@ Important points:
   two-star review criticising office staff. The link goes to all of them.
 - The reviews are **old**: roughly 7 to 11 years. The site says so on each
   card and never implies they are recent.
-- Five further reviews could not be retrieved; Google requires a signed-in
-  account to display them.
+- **Only five of the ten are reachable.** Signed out, Google shows five and
+  gates the rest behind "See more reviews (5)", which requires an account.
+  The four on the site are the positive four of those five.
+- The fifth visible review is two stars, praises Dr. Andrews but calls the
+  office staff "deplorable" over billing and reminders. It is not on the
+  site. To genuinely show all ten, paste the remaining text from a
+  signed-in Google session and they can be added to the marquee.
 - `aggregateRating` and two `Review` entries appear in the structured data.
 
 **Action:** confirm you are happy to republish these four, and that the

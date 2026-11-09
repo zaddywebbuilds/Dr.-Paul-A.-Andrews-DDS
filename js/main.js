@@ -123,6 +123,58 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------
+     Review marquee
+     The set is cloned once so the track can scroll a full set width
+     and loop with no visible seam. Duration is derived from the real
+     width, so the reviews always drift at the same slow speed however
+     many there are and however wide the screen is.
+     -------------------------------------------------------- */
+  const track = document.getElementById('review-track');
+  if (track) {
+    const set = track.querySelector('.review-set');
+    const marquee = track.closest('.review-marquee');
+
+    const SPEED = 38; // pixels per second — slow enough to read
+
+    const build = () => {
+      // Remove any previous clone before measuring.
+      track.querySelectorAll('.review-set[data-clone]').forEach(n => n.remove());
+      const width = set.scrollWidth;
+      if (!width) return;
+
+      const clone = set.cloneNode(true);
+      clone.setAttribute('data-clone', 'true');
+      clone.setAttribute('aria-hidden', 'true');
+      // Keep the duplicate out of the tab order.
+      clone.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+      track.appendChild(clone);
+
+      track.style.setProperty('--marquee-duration', (width / SPEED).toFixed(1) + 's');
+    };
+
+    build();
+    // Re-measure when fonts finish loading or the viewport changes.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    let rt;
+    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 200); }, { passive: true });
+
+    // Pause while off screen so it costs nothing when not visible.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => track.classList.toggle('paused', !e.isIntersecting));
+      }, { threshold: 0 }).observe(marquee);
+    }
+
+    // Touch: tap to pause, tap again to resume.
+    if (marquee) {
+      marquee.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        track.classList.toggle('paused');
+      });
+    }
+  }
+
+  /* --------------------------------------------------------
      Conversion tracking hooks
      No analytics provider is wired up yet; these fire only once
      gtag / fbq exist, so nothing is sent until the owner opts in.

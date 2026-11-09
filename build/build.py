@@ -16,8 +16,8 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PHONE_E164 = "+14074612094"
-PHONE_HUMAN = "(407) 461-2094"
+PHONE_E164 = "+14078620444"
+PHONE_HUMAN = "(407) 862-0444"
 ADDRESS = "1110 St. Albans Loop, Lake Mary, FL 32746"
 MAPS_Q = "1110+St+Albans+Loop+Lake+Mary+FL+32746"
 MAPS_LINK = f"https://www.google.com/maps/search/?api=1&amp;query={MAPS_Q}"
@@ -766,7 +766,7 @@ def page_contact():
     "name": "Dr. Paul A. Andrews, DDS, PhD",
     "url": "https://zaddywebbuilds.github.io/Dr.-Paul-A.-Andrews-DDS/",
     "image": "https://zaddywebbuilds.github.io/Dr.-Paul-A.-Andrews-DDS/images/office-exterior.webp",
-    "telephone": "+1-407-461-2094",
+    "telephone": "+1-407-862-0444",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1110 St. Albans Loop",
